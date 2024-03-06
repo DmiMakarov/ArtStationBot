@@ -1,10 +1,14 @@
-from aiogram import Dispatcher
+from aiogram import Bot, Dispatcher
 from aiogram.types import Message
 
 
 async def admin_start(message: Message):
     await message.reply("Hello, admin!")
 
+async def admin_repeat(bot: Bot, admin: int):
+    print(admin)
+    await bot.send_message(admin, "Hello, admin!!!!")
 
 def register_admin(dp: Dispatcher):
-    dp.register_message_handler(admin_start, commands=["start"], state="*", is_admin=True)
+    dp.message.register(admin_start)
+  
